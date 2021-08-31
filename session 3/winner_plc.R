@@ -2,6 +2,7 @@ library(tidyverse)
 library(GGally)
 library(skimr)
 library(mosaic)
+library(car)
 library(ggfortify)
 
 # while it's fine to know about working directories, I suggest 
@@ -90,12 +91,13 @@ winner %>%
 model4 <- lm(salary ~ experience + gender, data = winner)
 mosaic::msummary(model4)
 autoplot(model4)
+car::vif(model4)
 
 model5 <- lm(salary ~ sqrt(experience) + gender, data = winner)
 mosaic::msummary(model5)
 autoplot(model5)
+car::vif(model5)
 
 model6 <- lm(salary ~ sqrt(experience), data = winner)
 mosaic::msummary(model6)
 autoplot(model6)
-
