@@ -6,7 +6,8 @@ library(mosaic)
 # while it's fine to know about working directories, I suggest 
 # you learn to use the package 'here' that makes organising files easy
 # https://malco.io/2018/11/05/why-should-i-use-the-here-package/
-credit <- read_csv(here::here('data', 'credit.csv'))
+credit <- read_csv(here::here('data', 'credit.csv')) %>% 
+  rename(own_house = own)
 
 credit %>% 
   skim()
@@ -18,6 +19,9 @@ favstats(~balance, data=credit)
 mosaic::favstats(balance ~ married, data = credit)
 mosaic::favstats(balance ~ student, data = credit)
 
+mosaic::favstats(balance ~ own_house, data = credit)
+
+options(digits=3)
 # ---------------------------
 # Balance vs. married
 

@@ -24,6 +24,19 @@ credit %>%
   theme_bw()
 
 
+# balance vs income and students: is it parallel slopes or interaction?
+
+ggplot(credit, aes(x=income, y=balance, colour=student))+
+  geom_point()+
+  geom_smooth()
+
+# balance vs income and own: is it parallel slopes or interaction?
+
+ggplot(credit, aes(x=income, y=balance, colour=married))+
+  geom_point()+
+  geom_smooth()
+
+
 model1 <- lm(balance ~ rating, data=credit)
 mosaic::msummary(model1)
 
